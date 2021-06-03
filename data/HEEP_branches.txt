@@ -1,0 +1,8 @@
+#to save time we drop branches from the nano we dont need
+drop *
+keep Electron*
+keep nElectron
+keep *TrigObj*
+keep HLT_Ele32_WPTight_Gsf
+keep HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+keep PV*
