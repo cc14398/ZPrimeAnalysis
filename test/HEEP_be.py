@@ -129,13 +129,25 @@ if __name__ == "__main__":
     ROOT.EtaFailingProbesTagHist = ROOT.TH1D("EtaFailingProbesTagHist",";eta;#entries;",40,-2.6,2.6)
 
     ROOT.EtaAllPairsNoEtaReqProbeHist = ROOT.TH1D("EtaAllPairsNoEtaReqProbeHist",";eta;#entries;",40,-2.6,2.6)
-    ROOT.EtaAllPairsNoEtaReq2DHist = ROOT.TH2D("EtaAllPairsNoEtaReq2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
     ROOT.EtaAllPairsProbeHist = ROOT.TH1D("EtaAllPairsProbeHist",";eta;#entries;",40,-2.6,2.6)
     ROOT.EtaTrigProbeHist = ROOT.TH1D("EtaTrigProbeHist",";eta;#entries;",40,-2.6,2.6)
     ROOT.EtaIDSelProbeHist = ROOT.TH1D("EtaIDSelProbeHist",";eta;#entries;",40,-2.6,2.6)
     ROOT.EtaPassingProbesProbeHist = ROOT.TH1D("EtaPassingProbesProbeHist",";eta;#entries;",40,-2.6,2.6)
     ROOT.EtaFailingProbesProbeHist = ROOT.TH1D("EtaFailingProbesProbeHist",";eta;#entries;",40,-2.6,2.6)
     
+    ROOT.EtaAllPairsNoEtaReq2DHist = ROOT.TH2D("EtaAllPairsNoEtaReq2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaAllPairsBB2DHist = ROOT.TH2D("EtaAllPairsBB2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaAllPairsBE2DHist = ROOT.TH2D("EtaAllPairsBE2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg1AllPairs2DHist = ROOT.TH2D("EtaReg1AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg2AllPairs2DHist = ROOT.TH2D("EtaReg2AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg3AllPairs2DHist = ROOT.TH2D("EtaReg3AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg4AllPairs2DHist = ROOT.TH2D("EtaReg4AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg5AllPairs2DHist = ROOT.TH2D("EtaReg5AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg6AllPairs2DHist = ROOT.TH2D("EtaReg6AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg7AllPairs2DHist = ROOT.TH2D("EtaReg7AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg8AllPairs2DHist = ROOT.TH2D("EtaReg8AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+    ROOT.EtaReg9AllPairs2DHist = ROOT.TH2D("EtaReg9AllPairs2DHist",";probe_eta;tag_eta;",40,-2.6,2.6,40,-2.6,2.6)
+
     trig_name = "HLT_Ele32_WPTight_Gsf"
         
     trig_psetid = None
@@ -180,7 +192,28 @@ if __name__ == "__main__":
             ROOT.EtaAllPairsNoEtaReqProbeHist.Fill(probe.eta+probe.deltaEtaSC,args.evtweight)
             ROOT.EtaAllPairsNoEtaReq2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
             #remember tag must be a barrel electron
+            if (abs(tag.eta+tag.deltaEtaSC)<1.4442 and abs(probe.eta+probe.deltaEtaSC)<1.4442):
+                ROOT.EtaAllPairsBB2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
+                ROOT.EtaReg5AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
+            if ((tag.eta+tag.deltaEtaSC)<-1.566 and (probe.eta+probe.deltaEtaSC)>1.556):
+                ROOT.EtaReg1AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)  
+            if (abs(tag.eta+tag.deltaEtaSC)<1.4442 and (probe.eta+probe.deltaEtaSC)>1.556):
+                ROOT.EtaReg2AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)  
+            if ((tag.eta+tag.deltaEtaSC)>1.566 and (probe.eta+probe.deltaEtaSC)>1.556):
+                ROOT.EtaReg3AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
+            if ((tag.eta+tag.deltaEtaSC)<-1.566 and abs(probe.eta+probe.deltaEtaSC)<1.4442):
+                ROOT.EtaReg4AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
+            if ((tag.eta+tag.deltaEtaSC)>1.566 and abs(probe.eta+probe.deltaEtaSC)<1.4442):
+                ROOT.EtaReg6AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
+            if ((tag.eta+tag.deltaEtaSC)<-1.566 and (probe.eta+probe.deltaEtaSC)<-1.556):
+                ROOT.EtaReg7AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
+            if (abs(tag.eta+tag.deltaEtaSC)<1.4442 and (probe.eta+probe.deltaEtaSC)<-1.556):
+                ROOT.EtaReg8AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
+            if ((tag.eta+tag.deltaEtaSC)>1.566 and (probe.eta+probe.deltaEtaSC)<-1.556):
+                ROOT.EtaReg9AllPairs2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
+
             if (abs(tag.eta+tag.deltaEtaSC)<1.4442 and abs(probe.eta+probe.deltaEtaSC)>1.566):
+                ROOT.EtaAllPairsBE2DHist.Fill(tag.eta+tag.deltaEtaSC,probe.eta+probe.deltaEtaSC)
                 # and abs(probe.eta+probe.deltaEtaSC)<2.5 
                 #note we have a problem with p4() due to how its declared in the c++
                 #easier to just use polarP4 
